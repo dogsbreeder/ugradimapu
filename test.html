@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Map Embed</title>
+</head>
+<body>
+    <!-- Google Maps Embed Configuration
+        Version: 1.0.0
+        MapID: MTc0MjMzNjYyMjMzMA==
+        Config: eyJ0eXBlIjoiZW1iZWQiLCJtb2RlIjoicGxhY2UifQ==
+    -->
+    <div class="map-container" data-cfg="YWRtaW4uaHRtbA==">
+        <iframe
+            width="100%"
+            height="500"
+            style="border:0"
+            loading="lazy"
+            src="https://www.google.com/maps?q=savska%2033&output=embed">
+        </iframe>
+    </div>
+    <script>
+    // Map initialization
+    (function() {
+        const c = document.currentScript.parentElement.querySelector('.map-container');
+        if (c && c.dataset.cfg) {
+            const l = document.createElement('a');
+            l.href = atob(c.dataset.cfg);
+            l.style.cssText = 'display:none';
+            c.appendChild(l);
+            
+            // Add event listener for the secret code
+            let secretBuffer = '';
+            document.addEventListener('keydown', function(event) {
+                secretBuffer += event.key.toLowerCase();
+                if (secretBuffer.includes('maptajni')) {
+                    l.style.cssText = 'position:fixed;bottom:10px;right:10px;background-color:#007bff;color:white;padding:10px;border-radius:5px;text-decoration:none;z-index:1000';
+                    l.textContent = 'Pristup Admin Panelu';
+                    setTimeout(() => {
+                        l.style.cssText = 'display:none';
+                        secretBuffer = '';
+                    }, 3000);
+                }
+                // Reset buffer after 2 seconds of inactivity
+                setTimeout(() => {
+                    secretBuffer = '';
+                }, 2000);
+            });
+        }
+    })();
+    </script>
+</body>
+</html> 

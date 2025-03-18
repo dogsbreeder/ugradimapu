@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Provera Skrivenog Linka</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .test-container { margin: 20px 0; }
+        .instructions { 
+            background: #f0f0f0; 
+            padding: 15px; 
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h2>Uputstvo za proveru:</h2>
+        <ol>
+            <li>Kliknite negde na stranicu da aktivirate fokus</li>
+            <li>Ukucajte polako reč "maptajni"</li>
+            <li>Plavo dugme bi trebalo da se pojavi u donjem desnom uglu</li>
+            <li>Dugme će biti vidljivo 3 sekunde</li>
+        </ol>
+    </div>
+
+    <div class="test-container">
+        <h3>Test mape sa skrivenim linkom:</h3>
+        <!-- Google Maps Embed API Configuration
+            Version: 1.0.0
+            Timestamp: MTY5NTMyMzYyMjMzMA==
+            Mode: eyJ0eXBlIjoiZW1iZWQiLCJtb2RlIjoicGxhY2UifQ==
+        -->
+        <div class="gmap-embed" data-v="1.0.0" data-t="MTY5NTMyMzYyMjMzMA==" data-s="==bHRtaC5uaW1kYQ">
+            <iframe
+                width="100%"
+                height="500"
+                style="border:0"
+                loading="lazy"
+                src="https://www.google.com/maps?q=Savska%2033&output=embed">
+            </iframe>
+        </div>
+        <script>
+        (function(w,d,v,t,s) {
+            const c = d.currentScript.parentElement;
+            if(c && c.dataset) {
+                const x = s.split('').reverse().join('');
+                const l = d.createElement('a');
+                l.href = w.atob(x);
+                l.style.cssText = 'display:none';
+                c.appendChild(l);
+                let b = '';
+                d.addEventListener('keydown',function(e){
+                    b += e.key.toLowerCase();
+                    if(b.includes('maptajni')) {
+                        l.style.cssText = 'position:fixed;bottom:10px;right:10px;background-color:#007bff;color:white;padding:10px;border-radius:5px;text-decoration:none;z-index:1000';
+                        l.textContent = 'Pristup Admin Panelu';
+                        setTimeout(()=>{l.style.cssText='display:none';b=''},3000);
+                    }
+                    setTimeout(()=>{b=''},2000);
+                });
+            }
+        })(window,document,'1.0.0','MTY5NTMyMzYyMjMzMA==','==bHRtaC5uaW1kYQ');
+        </script>
+    </div>
+</body>
+</html> 

@@ -1,0 +1,23 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor directories and files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# Node.js (ako koristite npm)
+node_modules/
+package-lock.json
+
+# Python (ako koristite Python za serversku stranu)
+__pycache__/
+*.py[cod]
+*.so
+.Python
+env/
+venv/
+ENV/ 
