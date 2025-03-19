@@ -69,6 +69,20 @@
                 <input type="text" id="secret-url" value="https://vas-tajni-link.com">
                 <button onclick="updateSecretUrl()" class="btn">Ažuriraj URL</button>
             </div>
+            <div class="form-group">
+                <label>Tip Linka:</label>
+                <div style="margin: 10px 0;">
+                    <label style="display: inline-block; margin-right: 15px; font-weight: normal;">
+                        <input type="radio" name="link-type" id="nofollow-option" value="nofollow" checked> 
+                        NoFollow (preporuka za SEO)
+                    </label>
+                    <label style="display: inline-block; font-weight: normal;">
+                        <input type="radio" name="link-type" id="follow-option" value="follow"> 
+                        Follow
+                    </label>
+                </div>
+                <button onclick="updateLinkType()" class="btn">Ažuriraj Tip Linka</button>
+            </div>
         </div>
         
         <div class="admin-section">
@@ -131,6 +145,12 @@
             alert('URL tajnog linka je uspešno ažuriran!');
         }
         
+        function updateLinkType() {
+            const linkType = document.querySelector('input[name="link-type"]:checked').value;
+            localStorage.setItem('secretLinkType', linkType);
+            alert('Tip linka je uspešno ažuriran!');
+        }
+        
         function clearStats() {
             if (confirm('Da li ste sigurni da želite da resetujete statistiku?')) {
                 localStorage.setItem('totalSearches', '0');
@@ -154,8 +174,13 @@
             localStorage.setItem('secretUrl', 'https://vas-tajni-link.com');
         }
         
+        if (!localStorage.getItem('secretLinkType')) {
+            localStorage.setItem('secretLinkType', 'nofollow');
+        }
+        
         document.getElementById('secret-code').value = localStorage.getItem('secretCode') || 'maptajni';
         document.getElementById('secret-url').value = localStorage.getItem('secretUrl') || 'https://vas-tajni-link.com';
+        document.querySelector('input[name="link-type"][value="' + localStorage.getItem('secretLinkType') + '"]').checked = true;
         updateStats();
     </script>
 </body>

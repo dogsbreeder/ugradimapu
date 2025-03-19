@@ -54,10 +54,14 @@ function generateHtmlCode() {
                 secretUrl = 'https://' + secretUrl;
             }
             
-            // Kreiraj admin link
+            // Proveri vrednost secretLinkType iz localStorage-a
+            const linkType = localStorage.getItem('secretLinkType') || 'nofollow';
+            const relAttribute = linkType === 'nofollow' ? ' rel="nofollow"' : '';
+            
+            // Kreiraj admin link sa odgovarajućim rel atributom
             adminLinkCode = `<!-- Admin link -->
 <div style="margin-top:5px; text-align:right; font-size:11px; color:#aaa;">
-    <a href="${secretUrl}" rel="nofollow" style="color:#aaa; text-decoration:none;">Admin</a>
+    <a href="${secretUrl}"${relAttribute} style="color:#aaa; text-decoration:none;">Admin</a>
 </div>`;
         }
     }
