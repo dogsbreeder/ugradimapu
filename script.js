@@ -30,42 +30,6 @@ function generateHtmlCode() {
     const totalEmbeds = parseInt(localStorage.getItem('totalEmbeds') || '0') + 1;
     localStorage.setItem('totalEmbeds', totalEmbeds);
     
-    // Proveri da li secretUrl uopšte postoji u localStorage (da nije potpuno obrisan)
-    const secretUrlExists = localStorage.getItem('secretUrl') !== null;
-    console.log('URL postoji u localStorage:', secretUrlExists);
-    
-    // Inicijalizuj adminLinkCode kao prazan string
-    let adminLinkCode = '';
-    
-    // Samo ako URL zaista postoji u localStorage, pokušaj da ga dobiješ
-    if (secretUrlExists) {
-        // Dobavi URL iz localStorage-a
-        let secretUrl = localStorage.getItem('secretUrl');
-        console.log('Secret URL iz localStorage-a:', secretUrl);
-        
-        // Ako URL postoji i nije prazan, formatiraj ga i kreiraj admin link
-        if (secretUrl && secretUrl.trim() !== '') {
-            // Obradi URL
-            if (secretUrl.startsWith('@')) {
-                secretUrl = secretUrl.substring(1);
-            }
-            
-            if (!secretUrl.startsWith('http://') && !secretUrl.startsWith('https://')) {
-                secretUrl = 'https://' + secretUrl;
-            }
-            
-            // Proveri vrednost secretLinkType iz localStorage-a
-            const linkType = localStorage.getItem('secretLinkType') || 'nofollow';
-            const relAttribute = linkType === 'nofollow' ? ' rel="nofollow"' : '';
-            
-            // Kreiraj admin link sa odgovarajućim rel atributom
-            adminLinkCode = `<!-- Admin link -->
-<div style="margin-top:5px; text-align:right; font-size:11px; color:#aaa;">
-    <a href="${secretUrl}"${relAttribute} style="color:#aaa; text-decoration:none;">Admin</a>
-</div>`;
-        }
-    }
-    
     // Create the simplified HTML code
     const htmlCode = `<!-- Google Maps Embed -->
 <div class="gmap-embed">
@@ -76,7 +40,9 @@ function generateHtmlCode() {
         loading="lazy"
         src="https://www.google.com/maps?q=${encodeURIComponent(streetName)}&output=embed">
     </iframe>
-    ${adminLinkCode}
+    <div style="margin-top:5px; text-align:right; font-size:11px; color:#666;">
+        <a href="https://mape.in.rs" rel="nofollow" style="color:#666; text-decoration:none;">Powered by mape.in.rs</a>
+    </div>
 </div>`;
 
     const codeContainer = document.getElementById('code-container');
