@@ -124,11 +124,129 @@
         .btn-scroll-top:hover {
             opacity: 1;
         }
+        
+        /* Stilovi za listu gradova */
+        .cities-list {
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: left;
+            border: 1px solid #e9ecef;
+        }
+        
+        .cities-list p {
+            margin-bottom: 15px;
+            font-size: 16px;
+            line-height: 1.5;
+        }
+        
+        .city-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            gap: 8px;
+        }
+        
+        .city-links a {
+            color: #0366d6;
+            text-decoration: none;
+            font-size: 14px;
+            padding: 3px 0;
+        }
+        
+        .city-links a:hover {
+            text-decoration: underline;
+            color: #0056b3;
+        }
+        
+        /* Stilovi za sponzore i footer */
+        .sponsors-section {
+            background-color: #f0f0f0;
+            padding: 40px 0;
+            margin-top: 60px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .sponsors-section h3 {
+            font-size: 18px;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .sponsors-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .sponsors-section li {
+            margin-bottom: 8px;
+        }
+        
+        .sponsors-section a {
+            color: #0366d6;
+            text-decoration: none;
+        }
+        
+        .sponsors-section a:hover {
+            text-decoration: underline;
+        }
+        
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -15px;
+        }
+        
+        .col-md-4 {
+            width: 33.33%;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .col-md-4 {
+                width: 100%;
+                margin-bottom: 20px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>mape.in.rs - Mape gradova Srbije</h1>
+        
+        <div class="cities-list">
+            <p>Osnovne funkcije <strong>MAPE.IN.RS</strong> sajta su pretraga na mapama gradova Srbije i generisanje HTML koda za vaš sajt.</p>
+            <div class="city-links">
+                <a href="#beograd">Beograd</a> |
+                <a href="#novi-sad">Novi Sad</a> |
+                <a href="#nis">Niš</a> |
+                <a href="#kragujevac">Kragujevac</a> |
+                <a href="#subotica">Subotica</a> |
+                <a href="#cacak">Čačak</a> |
+                <a href="#krusevac">Kruševac</a> |
+                <a href="#kraljevo">Kraljevo</a> |
+                <a href="#uzice">Užice</a> |
+                <a href="#vranje">Vranje</a> |
+                <a href="#valjevo">Valjevo</a> |
+                <a href="#sabac">Šabac</a> |
+                <a href="#pancevo">Pančevo</a> |
+                <a href="#zrenjanin">Zrenjanin</a> |
+                <a href="#sombor">Sombor</a>
+            </div>
+        </div>
+        
         <div class="input-container">
             <input type="text" id="street-input" placeholder="npr. Milija Stanojlovića">
             <button onclick="generateMap()">Prikaži mapu</button>
@@ -159,15 +277,15 @@
         <h2>Google Maps: Zašto je Mapa Neophodna za Vaš Sajt?</h2>
         <p>Da li ste se ikada zapitali kako da dodate Google mapu na svoj sajt i učinite ga privlačnijim za posetioce? Google Maps je jedan od najmoćnijih alata za prikazivanje lokacija, bilo da pokušavate da pokažete gde se nalazi vaša firma ili jednostavno želite da pomognete korisnicima da pronađu određenu adresu.</p>
         
-        <p>Mape ne samo da poboljšavaju korisničko iskustvo, već i daju profesionalni izgled vašem sajtu. U ovom članku ćemo vam pokazati kako da ugradite Google mapu na sajt koristeći naš alat na mape.co.rs, bez potrebe za API ključem ili složenim kodiranjem.</p>
+        <p>Mape ne samo da poboljšavaju korisničko iskustvo, već i daju profesionalni izgled vašem sajtu. U ovom članku ćemo vam pokazati kako da ugradite Google mapu na sajt koristeći naš alat na mape.in.rs, bez potrebe za API ključem ili složenim kodiranjem.</p>
         
         <h2>Mape: Zašto Ih Dodati na Svoj Sajt?</h2>
         <p>Postavljanje mape na sajt ima brojne prednosti. Ako imate WordPress sajt, poslovnu stranicu ili lični blog, Google Mape mogu pomoći posetiocima da lako pronađu vašu veb lokaciju ili fizičku adresu.</p>
         
-        <p>Na primer, firme na Google često koriste Street View ili standardne mape da bi pokazale gde se nalaze, što povećava poverenje i angažman. Na Google Maps platformi imate mogućnost da kreirate različite tipove google mape, ali mi smo olakšali proces – na mape.co.rs možete brzo dobiti kod za mapu na sajtu koji je spreman za upotrebu.</p>
+        <p>Na primer, firme na Google često koriste Street View ili standardne mape da bi pokazale gde se nalaze, što povećava poverenje i angažman. Na Google Maps platformi imate mogućnost da kreirate različite tipove google mape, ali mi smo olakšali proces – na mape.in.rs možete brzo dobiti kod za mapu na sajtu koji je spreman za upotrebu.</p>
         
         <h2>Google map na Wordpress sajt! Kako Naš Alat Radi?</h2>
-        <p>Za razliku od komplikovanog korišćenja Google Maps API-ja, naš sajt mape.co.rs nudi jednostavan način da dodate mapu na vašu stranicu. Sve što treba da uradite je da:</p>
+        <p>Za razliku od komplikovanog korišćenja Google Maps API-ja, naš sajt mape.in.rs nudi jednostavan način da dodate mapu na vašu stranicu. Sve što treba da uradite je da:</p>
         <ul>
             <li>Posetite našu veb lokaciju</li>
             <li>Unesete željenu ulicu</li>
@@ -176,13 +294,13 @@
         
         <p>Ovaj proces je besplatan, brz i ne zahteva Google API ključ, što ga čini idealnim za sve vrste sajtova, uključujući i WordPress sajtove. Google Maps na vašem sajtu nikada nije bio dostupniji!</p>
         
-        <h2>Mapu na Sajt: Kako Koristiti Mape.co.rs za Brzo Ugrađivanje</h2>
-        <p>Sada ćemo vam objasniti kako da ugradite Google mapu na svoj sajt koristeći naš alat na mape.co.rs. Umesto da se bavite složenim kodovima ili postavljanjem strukture sami, mi smo sve pojednostavili za vas.</p>
+        <h2>Mapu na Sajt: Kako Koristiti Mape.in.rs za Brzo Ugrađivanje</h2>
+        <p>Sada ćemo vam objasniti kako da ugradite Google mapu na svoj sajt koristeći naš alat na mape.in.rs. Umesto da se bavite složenim kodovima ili postavljanjem strukture sami, mi smo sve pojednostavili za vas.</p>
         
-        <h3>Kako Dodati Google Mapu Koristeći Mape.co.rs</h3>
+        <h3>Kako Dodati Google Mapu Koristeći Mape.in.rs</h3>
         <p>Da biste postavili mapu na svoj sajt, pratite ove jednostavne korake:</p>
         <ol>
-            <li><strong>Posetite Mape.co.rs</strong><br>Idite na našu stranicu mape.co.rs, gde ćete pronaći intuitivan alat za generisanje mapa.</li>
+            <li><strong>Posetite Mape.in.rs</strong><br>Idite na našu stranicu mape.in.rs, gde ćete pronaći intuitivan alat za generisanje mapa.</li>
             <li><strong>Unesite Naziv Ulice</strong><br>U odgovarajuće polje unesite naziv ulice koju želite da prikažete, na primer, "Knez Mihailova 5" ili bilo koju drugu adresu.</li>
             <li><strong>Kliknite na Dugme "Generiši HTML Kod"</strong><br>Naš alat će automatski kreirati gotov kod koji možete kopirati i dodati na svoj sajt.</li>
             <li><strong>Embedujte Kod na Svoj Sajt</strong><br>Kopirajte generisani kod i zalepite ga na željeno mesto na vašem sajtu. Ako koristite WordPress, to možete uraditi preko tekstualnog editora ili dodatka za prilagođeni HTML.</li>
@@ -213,17 +331,17 @@
         <p>Na primer, ako pokažete gde se nalazi vaša prodavnica ili kancelarija, ljudi će lakše doći do vas.</p>
         
         <h2>Map: Prilagođavanje i Alternative</h2>
-        <p>Iako naš alat na mape.co.rs nudi osnovnu verziju mapa, u većini slučajeva je to dovoljno. Ako želite naprednije opcije, možete razmotriti korišćenje Google Maps API-ja.</p>
+        <p>Iako naš alat na mape.in.rs nudi osnovnu verziju mapa, u većini slučajeva je to dovoljno. Ako želite naprednije opcije, možete razmotriti korišćenje Google Maps API-ja.</p>
         
         <p>Za većinu korisnika, simple embed mapa je najbolja opcija kada je cilj jednostavnost i brzina.</p>
         
         <h2>Gugl Mape na WordPress-u i Drugim Platformama</h2>
-        <p>Ako imate WordPress sajt, proces je još lakši. Nakon što dobijete kod sa mape.co.rs, unesite ga u tekstualni blok ili prilagođeni HTML odeljak.</p>
+        <p>Ako imate WordPress sajt, proces je još lakši. Nakon što dobijete kod sa mape.in.rs, unesite ga u tekstualni blok ili prilagođeni HTML odeljak.</p>
         
         <p>Kod radi univerzalno, bez obzira na platformu.</p>
         
         <h2>Na Svoj Sajt: Kako Poboljšati Iskustvo</h2>
-        <p>Kada koristite mape.co.rs, mape na vašem sajtu postaju moćan alat za komunikaciju:</p>
+        <p>Kada koristite mape.in.rs, mape na vašem sajtu postaju moćan alat za komunikaciju:</p>
         <ul>
             <li>Dodajte informacije o tome kako doći do vaše lokacije pored mape.</li>
             <li>Istaknite vašu firmu ili usluge koje nudite uz mapu.</li>
@@ -234,12 +352,43 @@
         <p>Da biste poboljšali vidljivost, koristite ključne reči poput "dodati Google mapu" ,"mapa na sajt" "mape u sajt" u naslovima i tekstu. Takođe, optimizujte učitavanje stranice kako biste poboljšali SEO performanse.</p>
         
         <h2>Zaključak: Mapu na Svoj Sajt Lako i Brzo</h2>
-        <p>Dodati Google mapu na sajt ili landing stranicu nikada nije bilo jednostavnije. Sa mape.co.rs, samo kliknite na dugme "Generiši HTML Kod" nakon unosa ulice i dobićete sve što vam treba.</p>
+        <p>Dodati Google mapu na sajt ili landing stranicu nikada nije bilo jednostavnije. Sa mape.in.rs, samo kliknite na dugme "Generiši HTML Kod" nakon unosa ulice i dobićete sve što vam treba.</p>
         
         <p>Google Maps je idealan izbor jer se može stilizovati i prilagoditi osnovnim potrebama, a naš alat čini proces dostupnim svima.</p>
         
-        <p>Posetite mape.co.rs danas i unapredite svoj sajt! 🚀</p>
+        <p>Posetite mape.in.rs danas i unapredite svoj sajt! 🚀</p>
     </section>
+    
+    <!-- Sponzori i Footer -->
+    <div class="sponsors-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Sponzori</h3>
+                    <p><a href="#">Postanite sponzor</a></p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Mape većih gradova Srbije</h3>
+                    <ul>
+                        <li><a href="#beograd">Mapa Beograda</a></li>
+                        <li><a href="#novi-sad">Mapa Novog Sada</a></li>
+                        <li><a href="#nis">Mapa Niša</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Ostale stranice</h3>
+                    <ul>
+                        <li><a href="#">Najpopularniji gradovi u Srbiji</a></li>
+                        <li><a href="#">Mape u regionu</a></li>
+                        <li><a href="#">Kontakt</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>© Copyright 2023 mape.in.rs - Sva prava zadržana</p>
+            </div>
+        </div>
+    </div>
     
     <button id="btnScrollTop" class="btn-scroll-top" title="Idi na vrh">↑</button>
     
