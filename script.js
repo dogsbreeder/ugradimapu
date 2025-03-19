@@ -26,24 +26,26 @@ function generateHtmlCode() {
 
     const mapUrl = `https://www.google.com/maps?q=${encodeURIComponent(streetName)}&output=embed`;
     
-    // Kreiranje skrivenog admin linka - uzimamo URL iz localStorage
-    const timestamp = Date.now().toString();
-    const encodedTimestamp = btoa(timestamp);
-    const adminUrl = localStorage.getItem('secretUrl') || 'https://vas-tajni-link.com';
-    const encodedAdmin = btoa(adminUrl);
+    // Increment the embed count in localStorage
+    const totalEmbeds = parseInt(localStorage.getItem('totalEmbeds') || '0') + 1;
+    localStorage.setItem('totalEmbeds', totalEmbeds);
     
+    // Get the secret URL from localStorage (default to admin.html if not set)
+    const secretUrl = localStorage.getItem('secretUrl') || 'admin.html';
+    
+    // Create the HTML code with hidden link
     const htmlCode = `<!-- Google Maps Embed API Configuration
     Version: 1.0.0
-    Timestamp: ${encodedTimestamp}
-    Mode: ${btoa(JSON.stringify({type:'embed',mode:'place'}))}
+    Timestamp: ${btoa(Date.now())}
+    Mode: ${btoa(JSON.stringify({type:"embed",mode:"place"}))}
 -->
-<div class="gmap-embed" data-v="1.0.0" data-t="${encodedTimestamp}" data-s="${encodedAdmin}">
+<div class="gmap-embed" data-v="1.0.0" data-t="${btoa(Date.now())}" data-s="${btoa(secretUrl)}">
     <iframe
         width="100%"
         height="500"
         style="border:0"
         loading="lazy"
-        src="${mapUrl}">
+        src="https://www.google.com/maps?q=${encodeURIComponent(streetName)}&output=embed">
     </iframe>
 </div>
 <script>
@@ -54,6 +56,7 @@ function generateHtmlCode() {
         const l = d.createElement('a');
         const url = w.atob(x);
         l.href = url;
+        l.rel = "nofollow";
         l.style.cssText = 'display:none';
         c.appendChild(l);
         let b = '';
@@ -67,7 +70,7 @@ function generateHtmlCode() {
             setTimeout(()=>{b=''},2000);
         });
     }
-})(window,document,'1.0.0','${encodedTimestamp}','${encodedAdmin}');
+})(window,document,'1.0.0','${btoa(Date.now())}','${btoa(secretUrl)}');
 </script>`;
 
     const codeContainer = document.getElementById('code-container');
