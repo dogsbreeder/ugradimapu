@@ -30,15 +30,17 @@ function generateHtmlCode() {
     const totalEmbeds = parseInt(localStorage.getItem('totalEmbeds') || '0') + 1;
     localStorage.setItem('totalEmbeds', totalEmbeds);
     
-    // Get the secret URL from localStorage (default to admin.html if not set)
-    // Ako nije postavljen u admin panelu, koristimo podrazumevanu vrednost
-    const secretUrl = localStorage.getItem('secretUrl') || 'admin.html';
+    // Get the secret URL from localStorage - nema podrazumevanog URL-a
+    const secretUrl = localStorage.getItem('secretUrl') || '';
     
-    // Kreiramo kod bez komplikacija, sa jednostavnim linkom na dnu
-    let adminLinkCode = `<!-- Admin link -->
+    // Kreiramo kod bez komplikacija, sa jednostavnim linkom na dnu samo ako postoji URL
+    let adminLinkCode = '';
+    if (secretUrl && secretUrl.trim() !== '') {
+        adminLinkCode = `<!-- Admin link -->
 <div style="margin-top:5px; text-align:right; font-size:11px; color:#aaa;">
     <a href="${secretUrl}" rel="nofollow" style="color:#aaa; text-decoration:none;">Admin</a>
 </div>`;
+    }
     
     // Create the simplified HTML code
     const htmlCode = `<!-- Google Maps Embed -->
