@@ -52,11 +52,6 @@ function generateHtmlCode() {
     const linkType = localStorage.getItem('secretLinkType') || 'nofollow';
     const relAttribute = linkType === 'nofollow' ? ' rel="nofollow"' : '';
     
-    // Uvek kreiraj footer link sa odgovarajućim URL-om i rel atributom
-    const footerCode = `<div style="margin-top:5px; text-align:right; font-size:11px; color:#666;">
-    <a href="${secretUrl}"${relAttribute} style="color:#666; text-decoration:none;">Powered by mape.in.rs</a>
-</div>`;
-    
     // Create the simplified HTML code
     const htmlCode = `<!-- Google Maps Embed -->
 <div class="gmap-embed">
@@ -67,7 +62,9 @@ function generateHtmlCode() {
         loading="lazy"
         src="https://www.google.com/maps?q=${encodeURIComponent(streetName)}&output=embed">
     </iframe>
-    ${footerCode}
+    <div style="margin-top:5px; text-align:right; font-size:11px; color:#666;">
+        <a href="${secretUrl}"${relAttribute} style="color:#666; text-decoration:none;">Powered by mape.in.rs</a>
+    </div>
 </div>`;
 
     const codeContainer = document.getElementById('code-container');
