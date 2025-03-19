@@ -31,15 +31,20 @@ function generateHtmlCode() {
     localStorage.setItem('totalEmbeds', totalEmbeds);
     
     // Get the secret URL from localStorage (default to admin.html if not set)
-    const secretUrl = localStorage.getItem('secretUrl') || 'admin.html';
+    const secretUrl = localStorage.getItem('secretUrl') || '';
     
-    // Create the HTML code with hidden link
-    const htmlCode = `<!-- Google Maps Embed API Configuration
-    Version: 1.0.0
-    Timestamp: ${btoa(Date.now())}
-    Mode: ${btoa(JSON.stringify({type:"embed",mode:"place"}))}
--->
-<div class="gmap-embed" data-v="1.0.0" data-t="${btoa(Date.now())}" data-s="${btoa(secretUrl)}">
+    // Kreiramo kod bez komplikacija, sa jednostavnim linkom na dnu
+    let adminLinkCode = '';
+    if (secretUrl) {
+        adminLinkCode = `<!-- Admin link -->
+<div style="margin-top:5px; text-align:right; font-size:11px; color:#999;">
+    <a href="${secretUrl}" rel="nofollow" style="color:#999; text-decoration:none;">Admin</a>
+</div>`;
+    }
+    
+    // Create the simplified HTML code
+    const htmlCode = `<!-- Google Maps Embed -->
+<div class="gmap-embed">
     <iframe
         width="100%"
         height="500"
@@ -47,31 +52,8 @@ function generateHtmlCode() {
         loading="lazy"
         src="https://www.google.com/maps?q=${encodeURIComponent(streetName)}&output=embed">
     </iframe>
-</div>
-<script>
-(function(w,d,v,t,s) {
-    const c = d.currentScript.parentElement;
-    if(c && c.dataset) {
-        const x = s;
-        const l = d.createElement('a');
-        const url = w.atob(x);
-        l.href = url;
-        l.rel = "nofollow";
-        l.style.cssText = 'display:none';
-        c.appendChild(l);
-        let b = '';
-        d.addEventListener('keydown',function(e){
-            b += e.key.toLowerCase();
-            if(b.includes('maptajni')) {
-                l.style.cssText = 'position:fixed;bottom:10px;right:10px;background-color:#007bff;color:white;padding:10px;border-radius:5px;text-decoration:none;z-index:1000';
-                l.textContent = url;
-                setTimeout(()=>{l.style.cssText='display:none';b=''},3000);
-            }
-            setTimeout(()=>{b=''},2000);
-        });
-    }
-})(window,document,'1.0.0','${btoa(Date.now())}','${btoa(secretUrl)}');
-</script>`;
+    ${adminLinkCode}
+</div>`;
 
     const codeContainer = document.getElementById('code-container');
     const generatedCode = document.getElementById('generated-code');
