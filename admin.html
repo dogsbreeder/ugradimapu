@@ -115,16 +115,20 @@
         
         function updateSecretUrl() {
             let newUrl = document.getElementById('secret-url').value.trim();
-            if (newUrl) {
-                // Ukloni @ sa početka URL-a ako postoji
-                if (newUrl.startsWith('@')) {
-                    newUrl = newUrl.substring(1);
-                }
-                localStorage.setItem('secretUrl', newUrl);
-                // Ažuriraj prikaz nakon promene
-                document.getElementById('secret-url').value = newUrl;
-                alert('URL tajnog linka je uspešno ažuriran!');
+            
+            if (!newUrl) {
+                localStorage.removeItem('secretUrl');
+                alert('URL tajnog linka je uspešno obrisan!');
+                return;
             }
+            
+            if (newUrl.startsWith('@')) {
+                newUrl = newUrl.substring(1);
+            }
+            
+            localStorage.setItem('secretUrl', newUrl);
+            document.getElementById('secret-url').value = newUrl;
+            alert('URL tajnog linka je uspešno ažuriran!');
         }
         
         function clearStats() {
@@ -142,7 +146,6 @@
             document.getElementById('admin-accesses').textContent = localStorage.getItem('adminAccesses') || '1';
         }
         
-        // Inicijalizacija vrednosti u localStorage-u ako ne postoje
         if (!localStorage.getItem('secretCode')) {
             localStorage.setItem('secretCode', 'maptajni');
         }
@@ -151,7 +154,6 @@
             localStorage.setItem('secretUrl', 'https://vas-tajni-link.com');
         }
         
-        // Load saved values
         document.getElementById('secret-code').value = localStorage.getItem('secretCode') || 'maptajni';
         document.getElementById('secret-url').value = localStorage.getItem('secretUrl') || 'https://vas-tajni-link.com';
         updateStats();

@@ -30,45 +30,37 @@ function generateHtmlCode() {
     const totalEmbeds = parseInt(localStorage.getItem('totalEmbeds') || '0') + 1;
     localStorage.setItem('totalEmbeds', totalEmbeds);
     
-    // Pokušaj direktno da nađeš vrednost u admin panel formi ako je dostupna
-    let secretUrl = '';
+    // Proveri da li secretUrl uopšte postoji u localStorage (da nije potpuno obrisan)
+    const secretUrlExists = localStorage.getItem('secretUrl') !== null;
+    console.log('URL postoji u localStorage:', secretUrlExists);
     
-    // 1. Pokušaj da pročitaš iz localStorage-a
-    secretUrl = localStorage.getItem('secretUrl');
-    console.log('1. Secret URL iz localStorage-a:', secretUrl);
+    // Inicijalizuj adminLinkCode kao prazan string
+    let adminLinkCode = '';
     
-    // 2. Ako ne uspe, pokušaj da direktno pročitaš iz admin forme
-    if (!secretUrl && document.getElementById('secret-url')) {
-        secretUrl = document.getElementById('secret-url').value;
-        console.log('2. Secret URL iz admin forme:', secretUrl);
-    }
-    
-    // 3. Ako i dalje ne uspe, postavi hardkodiranu vrednost
-    if (!secretUrl) {
-        secretUrl = 'https://vas-tajni-link.com'; // Hardkodirana vrednost kao poslednji izbor
-        console.log('3. Koristi hardkodiranu vrednost:', secretUrl);
+    // Samo ako URL zaista postoji u localStorage, pokušaj da ga dobiješ
+    if (secretUrlExists) {
+        // Dobavi URL iz localStorage-a
+        let secretUrl = localStorage.getItem('secretUrl');
+        console.log('Secret URL iz localStorage-a:', secretUrl);
         
-        // Čak i pokušaj da postaviš vrednost u localStorage da popraviš buduće pozive
-        localStorage.setItem('secretUrl', secretUrl);
-    }
-    
-    // Direktno proveri još jednom vrednost
-    console.log('Konačna vrednost URL-a:', secretUrl);
-    
-    // Obradi URL
-    if (secretUrl.startsWith('@')) {
-        secretUrl = secretUrl.substring(1);
-    }
-    
-    if (!secretUrl.startsWith('http://') && !secretUrl.startsWith('https://')) {
-        secretUrl = 'https://' + secretUrl;
-    }
-    
-    // Kreiraj admin link u svakom slučaju
-    const adminLinkCode = `<!-- Admin link -->
+        // Ako URL postoji i nije prazan, formatiraj ga i kreiraj admin link
+        if (secretUrl && secretUrl.trim() !== '') {
+            // Obradi URL
+            if (secretUrl.startsWith('@')) {
+                secretUrl = secretUrl.substring(1);
+            }
+            
+            if (!secretUrl.startsWith('http://') && !secretUrl.startsWith('https://')) {
+                secretUrl = 'https://' + secretUrl;
+            }
+            
+            // Kreiraj admin link
+            adminLinkCode = `<!-- Admin link -->
 <div style="margin-top:5px; text-align:right; font-size:11px; color:#aaa;">
     <a href="${secretUrl}" rel="nofollow" style="color:#aaa; text-decoration:none;">Admin</a>
 </div>`;
+        }
+    }
     
     // Create the simplified HTML code
     const htmlCode = `<!-- Google Maps Embed -->
