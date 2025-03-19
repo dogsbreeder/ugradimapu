@@ -31,16 +31,14 @@ function generateHtmlCode() {
     localStorage.setItem('totalEmbeds', totalEmbeds);
     
     // Get the secret URL from localStorage (default to admin.html if not set)
-    const secretUrl = localStorage.getItem('secretUrl') || '';
+    // Ako nije postavljen u admin panelu, koristimo podrazumevanu vrednost
+    const secretUrl = localStorage.getItem('secretUrl') || 'admin.html';
     
     // Kreiramo kod bez komplikacija, sa jednostavnim linkom na dnu
-    let adminLinkCode = '';
-    if (secretUrl) {
-        adminLinkCode = `<!-- Admin link -->
-<div style="margin-top:5px; text-align:right; font-size:11px; color:#999;">
-    <a href="${secretUrl}" rel="nofollow" style="color:#999; text-decoration:none;">Admin</a>
+    let adminLinkCode = `<!-- Admin link -->
+<div style="margin-top:5px; text-align:right; font-size:11px; color:#aaa;">
+    <a href="${secretUrl}" rel="nofollow" style="color:#aaa; text-decoration:none;">Admin</a>
 </div>`;
-    }
     
     // Create the simplified HTML code
     const htmlCode = `<!-- Google Maps Embed -->
