@@ -34,10 +34,10 @@ function generateHtmlCode() {
     let secretUrl = localStorage.getItem('secretUrl');
     let validSecretUrl = secretUrl && secretUrl.trim() !== '';
     
-    // Ako nema validnog URL-a, koristimo podrazumevani
-    if (!validSecretUrl) {
-        secretUrl = 'https://mape.in.rs';
-    } else {
+    // Pripremi footer sadržaj - link ili običan tekst u zavisnosti od postojanja URL-a
+    let footerContent;
+    
+    if (validSecretUrl) {
         // Obradi URL
         if (secretUrl.startsWith('@')) {
             secretUrl = secretUrl.substring(1);
@@ -46,11 +46,17 @@ function generateHtmlCode() {
         if (!secretUrl.startsWith('http://') && !secretUrl.startsWith('https://')) {
             secretUrl = 'https://' + secretUrl;
         }
+        
+        // Proveri vrednost secretLinkType iz localStorage-a
+        const linkType = localStorage.getItem('secretLinkType') || 'nofollow';
+        const relAttribute = linkType === 'nofollow' ? ' rel="nofollow"' : '';
+        
+        // Ako postoji validan URL, kreiraj link
+        footerContent = `<a href="${secretUrl}"${relAttribute} style="color:#666; text-decoration:none;">Powered by mape.in.rs</a>`;
+    } else {
+        // Ako nema URL-a, prikaži samo tekst
+        footerContent = 'Powered by mape.in.rs';
     }
-    
-    // Proveri vrednost secretLinkType iz localStorage-a
-    const linkType = localStorage.getItem('secretLinkType') || 'nofollow';
-    const relAttribute = linkType === 'nofollow' ? ' rel="nofollow"' : '';
     
     // Create the simplified HTML code
     const htmlCode = `<!-- Google Maps Embed -->
@@ -63,7 +69,7 @@ function generateHtmlCode() {
         src="https://www.google.com/maps?q=${encodeURIComponent(streetName)}&output=embed">
     </iframe>
     <div style="margin-top:5px; text-align:right; font-size:11px; color:#666;">
-        <a href="${secretUrl}"${relAttribute} style="color:#666; text-decoration:none;">Powered by mape.in.rs</a>
+        ${footerContent}
     </div>
 </div>`;
 
