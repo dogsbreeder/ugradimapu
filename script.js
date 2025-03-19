@@ -30,38 +30,32 @@ function generateHtmlCode() {
     const totalEmbeds = parseInt(localStorage.getItem('totalEmbeds') || '0') + 1;
     localStorage.setItem('totalEmbeds', totalEmbeds);
     
-    // Proveri da li secretUrl uopšte postoji u localStorage
-    const secretUrlExists = localStorage.getItem('secretUrl') !== null;
+    // Proveri da li secretUrl uopšte postoji i nije prazan u localStorage
+    let secretUrl = localStorage.getItem('secretUrl');
+    let validSecretUrl = secretUrl && secretUrl.trim() !== '';
     
-    // Inicijalizuj footerCode kao prazan string
-    let footerCode = '';
-    
-    // Samo ako URL zaista postoji u localStorage, kreiraj link
-    if (secretUrlExists) {
-        // Dobavi URL iz localStorage-a
-        let secretUrl = localStorage.getItem('secretUrl');
+    // Ako nema validnog URL-a, koristimo podrazumevani
+    if (!validSecretUrl) {
+        secretUrl = 'https://mape.in.rs';
+    } else {
+        // Obradi URL
+        if (secretUrl.startsWith('@')) {
+            secretUrl = secretUrl.substring(1);
+        }
         
-        // Ako URL postoji i nije prazan, formatiraj ga i kreiraj footer link
-        if (secretUrl && secretUrl.trim() !== '') {
-            // Obradi URL
-            if (secretUrl.startsWith('@')) {
-                secretUrl = secretUrl.substring(1);
-            }
-            
-            if (!secretUrl.startsWith('http://') && !secretUrl.startsWith('https://')) {
-                secretUrl = 'https://' + secretUrl;
-            }
-            
-            // Proveri vrednost secretLinkType iz localStorage-a
-            const linkType = localStorage.getItem('secretLinkType') || 'nofollow';
-            const relAttribute = linkType === 'nofollow' ? ' rel="nofollow"' : '';
-            
-            // Kreiraj footer link sa odgovarajućim rel atributom
-            footerCode = `<div style="margin-top:5px; text-align:right; font-size:11px; color:#666;">
-        <a href="${secretUrl}"${relAttribute} style="color:#666; text-decoration:none;">Powered by mape.in.rs</a>
-    </div>`;
+        if (!secretUrl.startsWith('http://') && !secretUrl.startsWith('https://')) {
+            secretUrl = 'https://' + secretUrl;
         }
     }
+    
+    // Proveri vrednost secretLinkType iz localStorage-a
+    const linkType = localStorage.getItem('secretLinkType') || 'nofollow';
+    const relAttribute = linkType === 'nofollow' ? ' rel="nofollow"' : '';
+    
+    // Uvek kreiraj footer link sa odgovarajućim URL-om i rel atributom
+    const footerCode = `<div style="margin-top:5px; text-align:right; font-size:11px; color:#666;">
+    <a href="${secretUrl}"${relAttribute} style="color:#666; text-decoration:none;">Powered by mape.in.rs</a>
+</div>`;
     
     // Create the simplified HTML code
     const htmlCode = `<!-- Google Maps Embed -->
