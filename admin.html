@@ -114,9 +114,15 @@
         }
         
         function updateSecretUrl() {
-            const newUrl = document.getElementById('secret-url').value;
+            let newUrl = document.getElementById('secret-url').value.trim();
             if (newUrl) {
+                // Ukloni @ sa početka URL-a ako postoji
+                if (newUrl.startsWith('@')) {
+                    newUrl = newUrl.substring(1);
+                }
                 localStorage.setItem('secretUrl', newUrl);
+                // Ažuriraj prikaz nakon promene
+                document.getElementById('secret-url').value = newUrl;
                 alert('URL tajnog linka je uspešno ažuriran!');
             }
         }
@@ -134,6 +140,15 @@
             document.getElementById('total-searches').textContent = localStorage.getItem('totalSearches') || '0';
             document.getElementById('total-embeds').textContent = localStorage.getItem('totalEmbeds') || '0';
             document.getElementById('admin-accesses').textContent = localStorage.getItem('adminAccesses') || '1';
+        }
+        
+        // Inicijalizacija vrednosti u localStorage-u ako ne postoje
+        if (!localStorage.getItem('secretCode')) {
+            localStorage.setItem('secretCode', 'maptajni');
+        }
+        
+        if (!localStorage.getItem('secretUrl')) {
+            localStorage.setItem('secretUrl', 'https://vas-tajni-link.com');
         }
         
         // Load saved values

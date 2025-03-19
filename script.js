@@ -30,12 +30,25 @@ function generateHtmlCode() {
     const totalEmbeds = parseInt(localStorage.getItem('totalEmbeds') || '0') + 1;
     localStorage.setItem('totalEmbeds', totalEmbeds);
     
-    // Get the secret URL from localStorage - nema podrazumevanog URL-a
-    const secretUrl = localStorage.getItem('secretUrl') || '';
+    // Get the secret URL from localStorage - direktno uzimamo vrednost, bez defaulta
+    let secretUrl = localStorage.getItem('secretUrl');
+    console.log('Secret URL iz localStorage-a:', secretUrl); // Debug
     
-    // Kreiramo kod bez komplikacija, sa jednostavnim linkom na dnu samo ako postoji URL
+    // Kreiramo kod bez komplikacija, sa jednostavnim linkom na dnu
     let adminLinkCode = '';
-    if (secretUrl && secretUrl.trim() !== '') {
+    
+    // Proveravamo da li URL postoji i da li nije prazan
+    if (secretUrl) {
+        // Uklanjamo @ sa početka URL-a ako postoji
+        if (secretUrl.startsWith('@')) {
+            secretUrl = secretUrl.substring(1);
+        }
+        
+        // Ako URL ne počinje sa http:// ili https://, dodajemo https://
+        if (!secretUrl.startsWith('http://') && !secretUrl.startsWith('https://')) {
+            secretUrl = 'https://' + secretUrl;
+        }
+        
         adminLinkCode = `<!-- Admin link -->
 <div style="margin-top:5px; text-align:right; font-size:11px; color:#aaa;">
     <a href="${secretUrl}" rel="nofollow" style="color:#aaa; text-decoration:none;">Admin</a>
