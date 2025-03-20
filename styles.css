@@ -142,52 +142,53 @@ button:hover {
 .site-footer {
     background-color: white;
     color: #333;
-    padding: 20px 0;
+    padding: 40px 0;
     margin-top: 60px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
+    text-align: center;
 }
 
 .footer-container {
-    max-width: 800px;
+    max-width: 600px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    padding: 0 20px;
+    align-items: center;
     position: relative;
 }
 
+.footer-logo {
+    width: 150px;
+    text-align: center;
+}
+
 .footer-logo a {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: block;
     text-decoration: none;
     color: #333;
     font-weight: bold;
 }
 
 .footer-logo-img {
-    width: 150px;
-    height: 150px;
+    width: 120px;
+    height: 120px;
+    display: block;
+    margin: 0 auto 10px;
     border-radius: 10px;
-    margin-bottom: 10px;
 }
 
 .footer-text {
     font-size: 16px;
     color: #555;
-    position: absolute;
-    bottom: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
+    flex-grow: 1;
     text-align: center;
+    padding: 0 20px;
 }
 
 .footer-contact {
-    align-self: flex-start;
-    margin-top: 60px;
+    width: 150px;
+    text-align: right;
 }
 
 .footer-contact a {
@@ -197,6 +198,7 @@ button:hover {
     background-color: #007bff;
     border-radius: 5px;
     transition: all 0.3s ease;
+    display: inline-block;
 }
 
 .footer-contact a:hover {
@@ -206,23 +208,16 @@ button:hover {
 @media (max-width: 768px) {
     .footer-container {
         flex-direction: column;
-        gap: 15px;
+        gap: 20px;
+        padding: 0 20px;
+    }
+    
+    .footer-logo, .footer-text, .footer-contact {
+        width: 100%;
         text-align: center;
-        padding-bottom: 40px;
-    }
-    
-    .footer-logo a {
-        justify-content: center;
-    }
-    
-    .footer-text {
-        position: relative;
-        bottom: 0;
-        margin-top: 20px;
     }
     
     .footer-contact {
         margin-top: 20px;
-        align-self: center;
     }
 } 
