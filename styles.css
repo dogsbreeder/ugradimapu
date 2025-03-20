@@ -148,7 +148,7 @@ button:hover {
 }
 
 .site-footer .container {
-    max-width: 790px;
+    max-width: 800px;
     margin: 0 auto;
     background-color: white;
     box-shadow: none;
@@ -196,18 +196,14 @@ button:hover {
 }
 
 .footer-contact a {
-    color: white;
+    color: #007bff;
     text-decoration: none;
-    padding: 10px 15px;
-    background-color: #007bff;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-    display: inline-block;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
 }
 
 .footer-contact a:hover {
-    background-color: #0056b3;
+    text-decoration: underline;
 }
 
 /* Isključivo za mobilne uređaje */
