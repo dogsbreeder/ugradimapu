@@ -153,12 +153,14 @@ button:hover {
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     padding: 0 20px;
+    position: relative;
 }
 
 .footer-logo a {
     display: flex;
+    flex-direction: column;
     align-items: center;
     text-decoration: none;
     color: #333;
@@ -166,14 +168,26 @@ button:hover {
 }
 
 .footer-logo-img {
-    margin-right: 10px;
-    border-radius: 4px;
-    padding: 2px;
+    width: 150px;
+    height: 150px;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
 
 .footer-text {
-    font-size: 14px;
+    font-size: 16px;
     color: #555;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    text-align: center;
+}
+
+.footer-contact {
+    align-self: flex-start;
+    margin-top: 60px;
 }
 
 .footer-contact a {
@@ -194,9 +208,21 @@ button:hover {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+        padding-bottom: 40px;
     }
     
     .footer-logo a {
         justify-content: center;
+    }
+    
+    .footer-text {
+        position: relative;
+        bottom: 0;
+        margin-top: 20px;
+    }
+    
+    .footer-contact {
+        margin-top: 20px;
+        align-self: center;
     }
 } 
