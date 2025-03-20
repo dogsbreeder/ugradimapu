@@ -142,28 +142,29 @@ button:hover {
 .site-footer {
     background-color: white;
     color: #333;
-    padding: 20px 0;
+    padding: 0;
     margin-top: 60px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     border-top: 1px solid #ddd;
 }
 
 .site-footer .container {
+    max-width: 800px;
+    margin: 0 auto;
     background-color: white;
     box-shadow: none;
     border-radius: 0;
-    padding: 0;
+    padding: 20px;
 }
 
 .footer-container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 0;
+    width: 100%;
 }
 
 .footer-logo {
-    width: 33%;
+    flex: 1;
     text-align: left;
 }
 
@@ -176,27 +177,28 @@ button:hover {
 }
 
 .footer-logo-img {
-    width: 32px;
-    height: 32px;
-    margin-right: 8px;
+    width: 64px;
+    height: 64px;
+    margin-right: 10px;
 }
 
 .footer-text {
-    width: 33%;
-    font-size: 14px;
-    color: #555;
+    flex: 1;
+    font-size: 16px;
+    color: #333;
     text-align: center;
+    font-weight: bold;
 }
 
 .footer-contact {
-    width: 33%;
+    flex: 1;
     text-align: right;
 }
 
 .footer-contact a {
     color: white;
     text-decoration: none;
-    padding: 8px 15px;
+    padding: 10px 15px;
     background-color: #007bff;
     border-radius: 5px;
     transition: all 0.3s ease;
@@ -208,10 +210,11 @@ button:hover {
     background-color: #0056b3;
 }
 
-@media (max-width: 768px) {
+/* Isključivo za mobilne uređaje */
+@media (max-width: 600px) {
     .footer-container {
         flex-direction: column;
-        gap: 15px;
+        gap: 20px;
     }
     
     .footer-logo, .footer-text, .footer-contact {
