@@ -159,24 +159,6 @@ button:hover {
     width: 100%;
 }
 
-.footer-logo {
-    flex: 1;
-}
-
-.footer-logo a {
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
-
-.footer-logo-img {
-    width: 150px;
-    height: 150px;
-    margin-right: 10px;
-}
-
 .footer-text {
     flex: 1;
     text-align: center;
@@ -206,12 +188,8 @@ button:hover {
         gap: 20px;
     }
     
-    .footer-logo, .footer-text, .footer-contact {
+    .footer-text, .footer-contact {
         width: 100%;
         text-align: center;
-    }
-    
-    .footer-logo a {
-        justify-content: center;
     }
 } 
