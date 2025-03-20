@@ -148,7 +148,7 @@ button:hover {
 }
 
 .site-footer .container {
-    max-width: 800px;
+    max-width: 790px;
     margin: 0 auto;
     background-color: white;
     box-shadow: none;
@@ -177,8 +177,8 @@ button:hover {
 }
 
 .footer-logo-img {
-    width: 64px;
-    height: 64px;
+    width: 150px;
+    height: 150px;
     margin-right: 10px;
 }
 
